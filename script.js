@@ -1,100 +1,168 @@
-const scrollArrow = document.getElementById("scrollArrow");
-const progressCircle = document.querySelector(".progress-ring__progress");
-const radius = progressCircle.r.baseVal.value;
-const circumference = 2 * Math.PI * radius;
+/* =========================================================
+ * M VIEW SERVICE — Main Scripts
+ * - PARALLAX (rAF, reduced motion aware)
+ * - SCROLL PROGRESS ARROW
+ * - SWIPER INIT
+ * =======================================================*/
 
-progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-progressCircle.style.strokeDashoffset = circumference;
+(() => {
+  // -------------------------------------------------------
+  // Utilities
+  // -------------------------------------------------------
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+  const prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * Sets the stroke-dashoffset of the progress circle to a given percentage.
- * @param {number} percent - a number between 0 and 100 representing the percentage of the circle to fill
- */
-/*******  33ddb204-891f-41a0-97bc-73f0e1934823  *******/
-function setProgress(percent) {
-  const offset = circumference - (percent / 100) * circumference;
-  progressCircle.style.strokeDashoffset = offset;
-}
+  // Single rAF ticker for scroll/resize work
+  let ticking = false;
+  const onScrollOrResize = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateParallax();
+        updateScrollProgress();
+        ticking = false;
+      });
+    }
+  };
 
-window.addEventListener("scroll", () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
+  // -------------------------------------------------------
+  // PARALLAX
+  // -------------------------------------------------------
+  const sections = $$(".parallax");
 
-  setProgress(scrollPercent);
+  function updateParallax() {
+    if (prefersReducedMotion || sections.length === 0) return;
 
-  // Show after scrolling 50px, hide near bottom
-  if (scrollTop > 50 && scrollPercent < 99) {
-    scrollArrow.classList.add("visible");
-  } else {
-    scrollArrow.classList.remove("visible");
+    const baseWidth = 768;
+    const maxZoom = 0.07; // ~7% max zoom on small screens
+    const vw = Math.max(window.innerWidth, 1);
+    const scaleFactor =
+      vw < baseWidth ? 1 + ((baseWidth - vw) / baseWidth) * maxZoom : 1;
+
+    for (const section of sections) {
+      const bg = $(".bg-image", section);
+      const content = $(".content", section);
+      if (!bg || !content) continue;
+
+      const y = section.getBoundingClientRect().top;
+      const bgSpeed = 0.45;
+      const contentSpeed = 0.25;
+
+      if (section.id === "section1") {
+        bg.style.transform = `translateY(${
+          y * bgSpeed
+        }px) scale(${scaleFactor})`;
+      } else {
+        bg.style.transform = `translateY(${y * bgSpeed}px)`;
+      }
+      content.style.transform = `translateY(${y * contentSpeed}px)`;
+    }
   }
-});
 
-// Smooth scroll to bottom when clicked
-scrollArrow.addEventListener("click", () => {
-  window.scrollTo({
-    top: document.documentElement.scrollHeight,
-    behavior: "smooth",
+  // Run once right away (safe because scripts use `defer`)
+  updateParallax();
+
+  // -------------------------------------------------------
+  // SCROLL PROGRESS ARROW
+  // -------------------------------------------------------
+  const scrollArrow = $("#scrollArrow");
+  const progressCircle = $(".progress-ring__progress");
+
+  let circumference = 0;
+  if (progressCircle) {
+    const radius = progressCircle.r.baseVal.value;
+    circumference = 2 * Math.PI * radius;
+    progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+    progressCircle.style.strokeDashoffset = `${circumference}`;
+  }
+
+  function setProgress(percent) {
+    if (!progressCircle || !circumference) return;
+    const offset = circumference - (percent / 100) * circumference;
+    progressCircle.style.strokeDashoffset = `${offset}`;
+  }
+
+  function updateScrollProgress() {
+    if (!scrollArrow) return;
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const docHeight = Math.max(
+      document.documentElement.scrollHeight - window.innerHeight,
+      1
+    );
+    const scrollPercent = (scrollTop / docHeight) * 100;
+
+    setProgress(scrollPercent);
+
+    // Show after scrolling 50px, hide near bottom
+    if (scrollTop > 50 && scrollPercent < 99) {
+      scrollArrow.classList.add("visible");
+    } else {
+      scrollArrow.classList.remove("visible");
+    }
+  }
+
+  // Smooth scroll to bottom on click
+  if (scrollArrow) {
+    scrollArrow.addEventListener("click", () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  // Initial progress set
+  updateScrollProgress();
+
+  // -------------------------------------------------------
+  // SWIPER INIT
+  // -------------------------------------------------------
+  function initSwiper() {
+    const swiperEl = $(".swiper-slider");
+    if (!swiperEl) return;
+    if (typeof Swiper === "undefined") {
+      console.warn(
+        "Swiper library not found. Make sure CDN script is loaded before script.js."
+      );
+      return;
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    const swiper = new Swiper(".swiper-slider", {
+      centeredSlides: true,
+      slidesPerView: 1,
+      grabCursor: true,
+      freeMode: false,
+      loop: true,
+      mousewheel: false,
+      keyboard: { enabled: true },
+      autoplay: { delay: 5000, disableOnInteraction: false },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        400: { slidesPerView: 1.1, spaceBetween: 20 },
+        520: { slidesPerView: 1.6, spaceBetween: 20 },
+        640: { slidesPerView: 1.9, spaceBetween: 20 },
+        768: { slidesPerView: 2.5, spaceBetween: 20 },
+        1024: { slidesPerView: 2.6, spaceBetween: 20 },
+        1100: { slidesPerView: 3, spaceBetween: 20 },
+      },
+    });
+  }
+
+  // -------------------------------------------------------
+  // Listeners
+  // -------------------------------------------------------
+  window.addEventListener("scroll", onScrollOrResize, { passive: true });
+  window.addEventListener("resize", onScrollOrResize);
+  window.addEventListener("DOMContentLoaded", () => {
+    // run one more time when DOMContentLoaded fires
+    onScrollOrResize();
+    initSwiper();
   });
-});
-
-const swiper = new Swiper(".swiper-slider", {
-  // Optional parameters
-  centeredSlides: true,
-  slidesPerView: 1,
-  grabCursor: true,
-  freeMode: false,
-  loop: true,
-  mousewheel: false,
-  keyboard: {
-    enabled: true,
-  },
-
-  // Enabled autoplay mode
-  autoplay: {
-    delay: 900000,
-    disableOnInteraction: false,
-  },
-
-  // If we need pagination
-  // pagination: {
-  //   el: ".swiper-pagination",
-  //   dynamicBullets: false,
-  //   clickable: true,
-  // },
-
-  // If we need navigation
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-
-  breakpoints: {
-    400: {
-      slidesPerView: 1.1,
-      spaceBetween: 20,
-    },
-    520: {
-      slidesPerView: 1.6,
-      spaceBetween: 20,
-    },
-    640: {
-      slidesPerView: 1.75,
-      spaceBetween: 20,
-    },
-    768: {
-      slidesPerView: 2.5,
-      spaceBetween: 20,
-    },
-    1024: {
-      slidesPerView: 2.6,
-      spaceBetween: 20,
-    },
-    1100: {
-      slidesPerView: 3,
-      spaceBetween: 20,
-    },
-  },
-});
+})();

@@ -1,9 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reunited</title>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <title>M VIEW SERVICE | Service Auto & Piese în Cuzdrioara, Cluj</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Orbitron:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta
+      name="description"
+      content="M VIEW SERVICE din Cuzdrioara, lângă Dej, oferă servicii auto complete: mecanică, diagnoză, electrică, direcție, climatizare, anvelope, piese auto și stație ITP."
+    />
+
+    <meta
+      name="keywords"
+      content="service auto Dej, mecanică auto Cluj, piese auto Dej, diagnoză auto, ITP Dej, M View Service"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        "@id": "https://your-domain.ro/#business",
+        "name": "M VIEW SERVICE",
+        "url": "https://your-domain.ro/",
+        "logo": "https://your-domain.ro/imgs/logo.webp",
+        "image": [
+          "https://your-domain.ro/imgs/logo.webp",
+          "https://your-domain.ro/imgs/sigla-Dr.webp"
+        ],
+        "telephone": "+40 744 230 575",
+        "email": "marcanto_agency@yahoo.com",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Str. Simion Bărnuțiu 56C",
+          "addressLocality": "Cuzdrioara",
+          "postalCode": "407260",
+          "addressRegion": "Cluj",
+          "addressCountry": "RO"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "17:00"
+          }
+        ],
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 46.87271297914578,
+          "longitude": 23.87414131556826
+        },
+        "areaServed": ["Cuzdrioara", "Dej", "Cluj"],
+        "hasMap": "https://maps.google.com/?q=Str.+Simion+B%C4%83rnu%C8%9Biu+56C,+Cuzdrioara+407260",
+        "knowsAbout": [
+          "mecanică auto",
+          "diagnoză auto",
+          "electrică auto",
+          "reglaj direcție și geometrie roți",
+          "climatizare auto",
+          "anvelope",
+          "piese auto",
+          "stație ITP"
+        ],
+        "inLanguage": "ro"
+      }
+    </script>
+
+    <link rel="canonical" href="https://your-domain.ro/" />
+    <meta
+      property="og:title"
+      content="M VIEW SERVICE | Service Auto & Piese în Cuzdrioara, Cluj"
+    />
+    <meta
+      property="og:description"
+      content="M VIEW SERVICE din Cuzdrioara, lângă Dej, oferă servicii auto complete: mecanică, diagnoză, electrică, direcție, climatizare, anvelope, piese auto și stație ITP."
+    />
+    <meta property="og:image" content="https://your-domain.ro/imgs/logo.webp" />
+    <meta property="og:url" content="https://your-domain.ro/" />
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:description"
+      content="M VIEW SERVICE din Cuzdrioara, lângă Dej, oferă servicii auto complete: mecanică, diagnoză, electrică, direcție, climatizare, anvelope, piese auto și stație ITP."
+    />
+    <meta property="og:image" content="https://your-domain.ro/imgs/logo.webp" />
+    <meta property="og:url" content="https://your-domain.ro/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ro_RO" />
+
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
@@ -16,8 +142,20 @@
       <header class="header">
         <div class="logo">
           <a href="#section1">
-            <img class="mview" src="./imgs/logo.png" alt="Image 1" />
-            <img class="doctor" src="./imgs/sigla-Dr.png" alt="Image 2" />
+            <img
+              class="mview"
+              src="./imgs/logo.webp"
+              alt="M VIEW SERVICE – siglă"
+              width="280"
+              height="60"
+            />
+            <img
+              class="doctor"
+              src="./imgs/sigla-Dr.webp"
+              alt="M VIEW SERVICE – Dr. Auto"
+              width="220"
+              height="60"
+            />
           </a>
         </div>
 
@@ -34,196 +172,263 @@
       </header>
     </div>
 
-    <!-- SECTION 1 -->
-    <section class="parallax" id="section1">
-      <div
-        class="bg-image"
-        style="background-image: url('./imgs/home.webp')"
-      ></div>
-      <div class="content">
-        <h1 class="title">M VIEW SERVICE</h1>
-      </div>
-    </section>
-
-    <!-- SECTION 2 -->
-    <section class="parallax" id="section2">
-      <div
-        class="bg-image"
-        style="background-image: url('./imgs/about-mic.webp')"
-      ></div>
-      <div class="content">
-        <div class="about_wrapper">
-          <div class="about_text">
-            <div>
-              <p class="about_title">DESPRE NOI</p>
-            </div>
-            <div>
-              <p class="subtitle">
-                Experiență, promptitudine și seriozitate la fiecare serviciu
-                oferit.
-              </p>
-            </div>
-            <div>
-              <p class="about_para">
-                Cu peste 10 ani de experiență în domeniu, oferim servicii auto
-                rapide și corecte, respectând cele mai înalte standarde. Punem
-                accent pe calitate, transparență și relații de încredere cu
-                fiecare client care ne trece pragul.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3 -->
-    <section class="parallax" id="section3">
-      <div class="bg-image services-bg"></div>
-      <div class="content background-img">
-        <!-- 🟥🟩🟥🟩🟥🟩🟥 -->
-        <!-- <h2>Our Services</h2>
-        <p>
-          From custom web development to digital strategy, we help businesses
-          grow with modern, scalable solutions.
-        </p> -->
-        <div class="section-carousel slider-section">
-          <div class="slider-container slider-column">
-            <div class="swiper swiper-slider">
-              <div class="swiper-wrapper">
-                <div class="card swiper-slide" alt="Swiper">
-                  <div class="image-wrapper">
-                    <img src="./imgs/anvelope.jpg" alt="Image" />
-                  </div>
-                  <div class="card-content">
-                    <h2>ANVELOPE</h2>
-                    <p class="card-text">
-                      <!-- Schimbi cauciucurile? Le montăm rapid și corect, ca să nu
-                      mai simți nicio vibrație la volan. -->
-                      Cauți schimb de anvelope? Venim cu scule bune și grijă
-                      mare, ca totul să fie perfect.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="card swiper-slide" alt="Swiper">
-                  <div class="image-wrapper">
-                    <img src="./imgs/clima.jpeg" alt="Image" />
-                  </div>
-                  <div class="card-content">
-                    <h2>CLIMATIZARE</h2>
-                    <p class="card-text">
-                      <!-- Nu mai răcește aerul? Îți igienizăm instalația și vei
-                      respira aer curat în mașină. -->
-                      Nu mai răcește? Sau miroase urât? Îți curățăm instalația
-                      și îți dăm aer rece înapoi.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="card swiper-slide" alt="Swiper">
-                  <div class="image-wrapper">
-                    <img src="./imgs/diagnostic.jpg" alt="Image" />
-                  </div>
-                  <div class="card-content">
-                    <h2>DIAGNOZA</h2>
-                    <p class="card-text">
-                      <!-- E aprins un martor în bord? Conectăm testerul și aflăm ce-l
-                      supără. -->
-                      Aprins ceva în bord? Noi verificăm la tester și îți spunem
-                      exact ce s-a întâmplat.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="card swiper-slide" alt="Swiper">
-                  <div class="image-wrapper">
-                    <img src="./imgs/directie.jpg" alt="Image" />
-                  </div>
-                  <div class="card-content">
-                    <h2>DIRECTIE</h2>
-                    <p class="card-text">
-                      <!-- Simți că trage într-o parte sau vibrează volanul? Ne ocupăm
-                      noi, ca să te bucuri de o direcție sigură. -->
-                      Ține volanul strâmb? Trage într-o parte? Venim cu cheia și
-                      o reglăm pe loc.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="card swiper-slide" alt="Swiper">
-                  <div class="image-wrapper">
-                    <img src="./imgs/electrica.webp" alt="Image" />
-                  </div>
-                  <div class="card-content">
-                    <h2>ELECTRICA</h2>
-                    <p class="card-text">
-                      <!-- Probleme cu farurile, semnalizarea sau ceva care nu mai
-                      „clipărește”? Le rezolvăm rapid. -->
-                      Nu mai pornește, nu mai luminează? Verificăm instalația
-                      electrică și rezolvăm tot ce e în neregulă.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="card swiper-slide" alt="Swiper">
-                  <div class="image-wrapper">
-                    <img src="./imgs/mecanica.jpg" alt="Image" />
-                  </div>
-                  <div class="card-content">
-                    <h2>MECANICA</h2>
-                    <p class="card-text">
-                      <!-- Mașina ta nu „sună” cum trebuie? O verificăm cap-coadă și
-                      reparăm tot ce ține de partea mecanică. -->
-                      Scârțâie, vibrează sau nu pornește? Noi o facem să meargă
-                      cum trebuie, din nou.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="card swiper-slide" alt="Swiper">
-                  <div class="image-wrapper">
-                    <img src="./imgs/piese-auto.webp" alt="Image" />
-                  </div>
-                  <div class="card-content">
-                    <h2>PIESE AUTO</h2>
-                    <p class="card-text">
-                      <!-- Ai nevoie de o piesă nouă? O găsim repede, o montăm corect
-                      și te asigurăm că se potrivește perfect. -->
-                      Avem piesa potrivită pentru mașina ta și ți-o montăm
-                      repede, ca să pleci fără griji.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="card swiper-slide" alt="Swiper">
-                  <div class="image-wrapper">
-                    <img src="./imgs/itp.jpg" alt="Image" />
-                  </div>
-                  <div class="card-content">
-                    <h2>STATIE ITP</h2>
-                    <p class="card-text">
-                      <!-- Aproape îți expiră ITP-ul? Vino <br> la noi, îl facem rapid și
-                      fără stres. -->
-                      Aproape expiră ITP-ul? Vino la noi și îl facem simplu,
-                      rapid, fără dureri de cap.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- <span class="swiper-pagination"></span> -->
-              <span class="swiper-button-prev"></span>
-              <span class="swiper-button-next"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4 -->
-    <section class="parallax contact-section" id="section4">
-      <div class="bg-image contact-bg"></div>
-      <div class="contact-wrapper">
+    <main>
+      <!-- SECTION 1 -->
+      <section class="parallax" id="section1">
+        <div class="bg-image"></div>
         <div class="content">
+          <h1 class="title">M VIEW SERVICE</h1>
+        </div>
+      </section>
+
+      <!-- SECTION 2 -->
+      <section class="parallax" id="section2">
+        <div
+          class="bg-image"
+          style="background-image: url('./imgs/about.webp')"
+        ></div>
+        <div class="content">
+          <div class="about_wrapper">
+            <div class="about_text">
+              <div>
+                <p class="about_title">DESPRE NOI</p>
+              </div>
+              <div>
+                <p class="subtitle">
+                  Experiență, promptitudine și seriozitate la fiecare serviciu
+                  oferit.
+                </p>
+              </div>
+              <div>
+                <p class="about_para">
+                  Cu peste 10 ani de experiență în domeniu, oferim servicii auto
+                  rapide și corecte, respectând cele mai înalte standarde. Punem
+                  accent pe calitate, transparență și relații de încredere cu
+                  fiecare client care ne trece pragul.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="parallax" id="section3">
+        <div class="bg-image services-bg"></div>
+        <div class="content background-img">
+          <div class="section-carousel slider-section">
+            <div class="slider-container slider-column">
+              <div class="swiper swiper-slider">
+                <div class="swiper-wrapper">
+                  <div class="card swiper-slide" alt="Swiper">
+                    <div class="image-wrapper">
+                      <img
+                        src="./imgs/anvelope.webp"
+                        alt="Montaj și schimb anvelope auto în Cuzdrioara lângă Dej"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="card-content">
+                      <h2>ANVELOPE</h2>
+                      <p class="card-text">
+                        Schimbi anvelopele? Le montăm corect și rapid, ca să
+                        mergi fără griji.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="card swiper-slide" alt="Swiper">
+                    <div class="image-wrapper">
+                      <img
+                        src="./imgs/clima.webp"
+                        alt="Reparații și igienizare instalație climatizare auto"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="card-content">
+                      <h2>CLIMATIZARE</h2>
+                      <p class="card-text">
+                        Nu mai răcește sau miroase urât? Curățăm instalația și
+                        îți dăm aer proaspăt.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="card swiper-slide" alt="Swiper">
+                    <div class="image-wrapper">
+                      <img
+                        src="./imgs/diagnostic.webp"
+                        alt="Diagnoză auto computerizată pentru toate mărcile"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="card-content">
+                      <h2>DIAGNOZA</h2>
+                      <p class="card-text">
+                        Aprins un martor în bord? Verificăm la tester și îți
+                        spunem exact problema.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="card swiper-slide" alt="Swiper">
+                    <div class="image-wrapper">
+                      <img
+                        src="./imgs/directie.webp"
+                        alt="Reglaj direcție și verificare geometrie roți"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="card-content">
+                      <h2>DIRECTIE</h2>
+                      <p class="card-text">
+                        Ține volanul strâmb? Trage într-o parte? Venim cu cheia
+                        și o reglăm pe loc.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="card swiper-slide" alt="Swiper">
+                    <div class="image-wrapper">
+                      <img
+                        src="./imgs/electrica.webp"
+                        alt="Reparații instalație electrică și pornire auto"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="card-content">
+                      <h2>ELECTRICA</h2>
+                      <p class="card-text" lang="ro">
+                        Nu pornește? Verificăm instalația electrică și rezolvăm
+                        rapid problema.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="card swiper-slide" alt="Swiper">
+                    <div class="image-wrapper">
+                      <img
+                        src="./imgs/mecanica.webp"
+                        alt="Servicii de mecanică auto și reparații profesionale"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="card-content">
+                      <h2>MECANICA</h2>
+                      <p class="card-text">
+                        Scârțâie sau vibrează? Verificăm mecanica și o facem să
+                        meargă perfect.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="card swiper-slide" alt="Swiper">
+                    <div class="image-wrapper">
+                      <img
+                        src="./imgs/piese-auto.webp"
+                        alt="Piese auto noi și montaj rapid în service"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="card-content">
+                      <h2>PIESE AUTO</h2>
+                      <p class="card-text">
+                        Ai nevoie de piese? Le găsim, le montăm și te pui
+                        imediat pe drum.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="card swiper-slide" alt="Swiper">
+                    <div class="image-wrapper">
+                      <img
+                        src="./imgs/itp.webp"
+                        alt="Stație ITP autorizată în Cuzdrioara lângă Dej"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="card-content">
+                      <h2>STATIE ITP</h2>
+                      <p class="card-text">
+                        Aproape expiră ITP-ul? Îl facem rapid și pleci fără
+                        stres.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <span class="swiper-pagination"></span> -->
+                <span class="swiper-button-prev"></span>
+                <span class="swiper-button-next"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4 -->
+      <section class="parallax contact-section" id="section4">
+        <div class="bg-image contact-bg"></div>
+        <div class="contact-wrapper">
+          <div class="content"></div>
+
+          <!-- Marquee -->
+          <div class="marquee" aria-label="Anunț">
+            <div class="marquee__track">
+              <!-- Set 1 -->
+              <span class="marquee__text"
+                >Oferim diagnoză gratuită mașinilor reparate la noi</span
+              >
+              <span class="marquee__text"
+                >Oferim diagnoză gratuită mașinilor reparate la noi</span
+              >
+              <span class="marquee__text"
+                >Oferim diagnoză gratuită mașinilor reparate la noi</span
+              >
+              <span class="marquee__text"
+                >Oferim diagnoză gratuită mașinilor reparate la noi</span
+              >
+
+              <!-- Set 2 (duplicate of Set 1, hidden from screen readers) -->
+              <span class="marquee__text" aria-hidden="true"
+                >Oferim diagnoză gratuită mașinilor reparate la noi</span
+              >
+              <span class="marquee__text" aria-hidden="true"
+                >Oferim diagnoză gratuită mașinilor reparate la noi</span
+              >
+              <span class="marquee__text" aria-hidden="true"
+                >Oferim diagnoză gratuită mașinilor reparate la noi</span
+              >
+              <span class="marquee__text" aria-hidden="true"
+                >Oferim diagnoză gratuită mașinilor reparate la noi</span
+              >
+            </div>
+          </div>
+
           <div class="info-container">
             <div class="info-box">
               <h2>Adresa</h2>
@@ -233,8 +438,18 @@
             </div>
             <div class="info-box">
               <h2>Contact</h2>
-              <p>0744.230.575</p>
-              <p>manuvlad1984@yahoo.com</p>
+              <p>
+                <a href="tel:+40744230575" class="tel-link">
+                  <span class="sr-only">+40 744 230 575</span>
+                  <span aria-hidden="true">0744.230.575</span>
+                </a>
+              </p>
+              <p>
+                <a href="mailto:marcanto_agency@yahoo.com" class="mail-link">
+                  <span class="sr-only">marcanto_agency@yahoo.com</span>
+                  <span aria-hidden="true">marcanto_agency@yahoo.com</span>
+                </a>
+              </p>
             </div>
             <div class="info-box">
               <h2>Orar</h2>
@@ -242,99 +457,126 @@
               <p>S - D: inchis</p>
             </div>
           </div>
-        </div>
-        <div class="map-container">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2787.851124672157!2d23.87414131556826!3d46.87271297914578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490d1ecfa6adf3%3A0x2cba4c63475c3b94!2sSimion%20B%C4%83rnu%C8%9Biu%2056C%2C%20Cuzdrioara%20407260!5e0!3m2!1sen!2sro!4v1699979047500!5m2!1sen!2sro"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen
-          ></iframe>
-        </div>
 
-        <div class="partners-section">
-          <h2 class="partners-title">Partenerii nostri</h2>
-          <div class="partners-logos">
-            <img src="./imgs/partners/ausburg.png" alt="Augsburg" />
-            <img src="./imgs/partners/autonet.png" alt="Autonet" />
-            <img src="./imgs/partners/autototal.png" alt="Auto Total" />
-            <img src="./imgs/partners/castrol.png" alt="Castrol" />
-            <img src="./imgs/partners/intercars.jpg" alt="Intercars" />
-            <img src="./imgs/partners/unix.png" alt="Unix" />
+          <div class="map-container">
+            <iframe
+              title="Harta M VIEW SERVICE – Str. Simion Bărnuțiu 56C, Cuzdrioara"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2787.851124672157!2d23.87414131556826!3d46.87271297914578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490d1ecfa6adf3%3A0x2cba4c63475c3b94!2sSimion%20B%C4%83rnu%C8%9Biu%2056C%2C%20Cuzdrioara%20407260!5e0!3m2!1sen!2sro!4v1699979047500!5m2!1sen!2sro"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <div class="partners-section">
+            <h2 class="partners-title">Partenerii nostri</h2>
+            <div class="partners-logos">
+              <img
+                src="./imgs/partners/castrol.webp"
+                alt="Castrol - partener M VIEW SERVICE"
+                width="200"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="./imgs/partners/unix.webp"
+                alt="Unix - partener M VIEW SERVICE"
+                width="200"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="./imgs/partners/autototal.webp"
+                alt="Autototal - partener M VIEW SERVICE"
+                width="200"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="./imgs/partners/ausburg.webp"
+                alt="Augsburg - partener M VIEW SERVICE"
+                width="200"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="./imgs/partners/intercars.webp"
+                alt="Intercars - partener M VIEW SERVICE"
+                width="200"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="./imgs/partners/autonet.webp"
+                alt="Autonet - partener M VIEW SERVICE"
+                width="200"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
         </div>
+      </section>
+
+      <!-- ARROW -->
+      <div class="scroll-arrow" id="scrollArrow">
+        <svg class="progress-ring" width="60" height="60">
+          <circle
+            class="progress-ring__background"
+            stroke="#ff0000"
+            stroke-width="4"
+            fill="black"
+            r="28"
+            cx="30"
+            cy="30"
+            opacity="0.3"
+          />
+          <circle
+            class="progress-ring__progress"
+            stroke="#ff0000"
+            stroke-width="4"
+            fill="transparent"
+            r="28"
+            cx="30"
+            cy="30"
+            stroke-linecap="round"
+          />
+        </svg>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2.5"
+          stroke="white"
+          class="hero-arrow"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 4v16m0 0l-6-6m6 6l6-6"
+          />
+        </svg>
       </div>
-    </section>
+    </main>
 
-    <!-- ARROW -->
-    <div class="scroll-arrow" id="scrollArrow">
-      <svg class="progress-ring" width="60" height="60">
-        <circle
-          class="progress-ring__background"
-          stroke="#ff0000"
-          stroke-width="4"
-          fill="black"
-          r="28"
-          cx="30"
-          cy="30"
-          opacity="0.3"
-        />
-        <circle
-          class="progress-ring__progress"
-          stroke="#ff0000"
-          stroke-width="4"
-          fill="transparent"
-          r="28"
-          cx="30"
-          cy="30"
-          stroke-linecap="round"
-        />
-      </svg>
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="2.5"
-        stroke="white"
-        class="hero-arrow"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M12 4v16m0 0l-6-6m6 6l6-6"
-        />
-      </svg>
-    </div>
-
-    <!-- PARALLAX SCRIPT -->
-    <script>
-      function updateParallax() {
-        const sections = document.querySelectorAll(".parallax");
-
-        sections.forEach((section) => {
-          const bg = section.querySelector(".bg-image");
-          const content = section.querySelector(".content");
-          const rect = section.getBoundingClientRect();
-          const scrollTop = rect.top;
-
-          // Background moves slower
-          const bgSpeed = 0.5;
-          bg.style.transform = `translateY(${scrollTop * bgSpeed}px)`;
-
-          // Content moves at slightly less speed
-          const contentSpeed = 0.25;
-          content.style.transform = `translateY(${scrollTop * contentSpeed}px)`;
-        });
-      }
-
-      window.addEventListener("scroll", updateParallax);
-      window.addEventListener("load", updateParallax);
-      window.addEventListener("resize", updateParallax);
-    </script>
+    <!-- ✅ Global Footer -->
+    <footer class="site-footer">
+      <div class="rightsReserved">
+        Designed and created by
+        <span class="name">Alexandru Vlad Manu</span> © All rights reserved.
+        Please do not claim as your own.
+      </div>
+    </footer>
 
     <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

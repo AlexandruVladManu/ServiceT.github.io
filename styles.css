@@ -1,10 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;500&display=swap");
+html {
+  scrollbar-gutter: stable both-edges; /* modern browsers */
+  overflow-y: scroll; /* fallback for older ones */
+  scroll-behavior: smooth; /* smooth anchor scrolling */
+  scroll-padding-top: 80px; /* offset for sticky header */
+}
 
 :root {
-  --gap: clamp(24px, 4vh, 64px);
-  --hero-ar: 0.75; /* image aspect ratio = height / width */
+  /* --marquee-gap: clamp(2rem, 6vw, 5rem); */
+  --marquee-gap: clamp(3rem, 15vw, 10rem);
+  --marquee-speed: 22s;
+  --marquee-height: 2.4em;
+
+  --gap: clamp(24px, 4vh, 64px); /* still global for the rest */
+  --hero-ar: 0.75;
   --contact-max: 1000px;
 }
 
@@ -18,18 +26,19 @@ body {
   max-width: 1600px;
   min-width: 300px;
   margin: 0 auto;
-  scroll-behavior: smooth;
   font-family: system-ui, sans-serif;
-  background-color: #111111;
+  background-color: #000000;
 }
 
 /* 🟩🟩🟩 NAVBAR 🟩🟩🟩 */
 .header-container {
   background: linear-gradient(
-    to right,
-    rgba(1, 1, 1, 0.89),
-    rgba(253, 3, 3, 0.712)
+    142deg,
+    rgba(0, 0, 0, 1) 17%,
+    rgba(166, 2, 2, 1) 50%,
+    rgba(242, 0, 0, 1) 69%
   );
+  height: 80px;
   width: 100%;
   position: sticky;
   top: 0;
@@ -42,19 +51,30 @@ body {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  height: 6rem;
+  height: 80px;
   transition: 0.3s;
 }
 
 /* ✅ Logo */
 .logo {
+  display: flex;
   max-width: 280px;
   height: 60px;
-  display: flex;
   align-items: center;
   gap: 10px;
   overflow: hidden;
 }
+@media (max-width: 800px) {
+  .logo {
+    height: 50px;
+  }
+}
+@media (max-width: 500px) {
+  .logo {
+    height: 40px;
+  }
+}
+
 .logo img {
   height: 100%;
   width: auto;
@@ -168,29 +188,39 @@ body {
   width: 30px;
 }
 
-.navigation input:checked ~ .menu-drop {
-  right: -20vw;
-}
-
 @media screen and (max-width: 768px) {
+  /* make the burger/checkbox usable on mobile */
   .hamburger,
   .toggle-menu {
     display: block;
   }
 
-  .header {
-    padding: 10px 20px;
+  /* the sliding panel */
+  .menu-drop {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    bottom: 0;
+    width: 240px;
+    height: 100dvh;
+    background: rgb(255 0 0 / 90%);
+    flex-direction: column;
+
+    transform-origin: top right;
+    transform: scaleY(0);
+    opacity: 0;
+    transition: transform 0.45s ease, opacity 0.45s ease;
+
+    z-index: 999;
+    padding-top: 0;
+
+    pointer-events: none;
   }
 
-  .menu-drop {
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: -400px;
-    width: 400px;
-    background: rgb(239, 32, 32);
-    height: 100%;
-    padding-top: 65px;
+  .navigation input:checked ~ .menu-drop {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .menu-drop li {
@@ -205,9 +235,13 @@ body {
   }
 }
 
-@media screen and (max-width: 650px) {
-  .header {
-    padding: 10px 10px 10px 0px;
+@media screen and (min-width: 769px) {
+  .menu-drop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 1;
+    transition: transform 0.5s;
   }
 }
 
@@ -217,16 +251,38 @@ body {
   }
 }
 
+@media screen and (max-width: 650px) {
+  .header {
+    padding: 0 10px;
+  }
+}
+
 h1 {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 500;
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   border-radius: 4px;
-  font-size: clamp(2rem, 6vw, 4rem);
   padding: 10px;
   color: rgb(255, 0, 0);
   font-family: "Orbitron", sans-serif;
   position: relative;
   bottom: 26dvh;
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: clamp(1.7rem, 6vw, 4rem);
+    padding: 25px 20px;
+    font-weight: 600;
+    bottom: 36dvh;
+  }
+}
+@media (max-width: 385px) {
+  h1 {
+    font-size: clamp(1.2rem, 5vw, 3rem);
+    font-weight: 700;
+  }
 }
 
 /* 🟩🟩🟩 SECTIONS 🟩🟩🟩 */
@@ -255,7 +311,10 @@ section {
   background-position: center center;
   z-index: 0;
   transform: translateY(0);
-  transition: transform 0.1s linear;
+
+  /* transition: transform 0.1s linear; */
+  transition: none;
+  will-change: transform;
 }
 
 .parallax::before {
@@ -283,19 +342,29 @@ section {
   }
 }
 
-@media (max-width: 500px) {
-  #section1 .bg-image {
-    height: 140%;
-    background-position: center 62%;
-  }
-  #section1 {
-    min-height: 100vh;
+#section1 .bg-image {
+  background-image: url("./imgs/home-big.webp");
+}
+
+/* center the zoom for a nice micro-scale */
+#section1 .bg-image {
+  transform-origin: center center;
+}
+
+/* respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .parallax .bg-image {
+    transition: none !important;
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 500px) {
   #section1 .bg-image {
-    background-position: center 66%;
+    height: 140%;
+    background-image: url("./imgs/home-small.webp");
+  }
+  #section1 {
+    min-height: 100dvh;
   }
 }
 
@@ -310,8 +379,6 @@ section {
   align-items: center;
   padding: 4vh 1rem;
 }
-
-/* ... (rest of your CSS unchanged: about, services, carousel, contact, etc.) */
 
 /* 🔽🔽🔽 ABOUT 🔽🔽🔽 */
 
@@ -352,7 +419,7 @@ section {
 
 .about_para {
   /* font-size: clamp(1rem, 1.8vw, 1.25rem); */
-  font-size: clamp(0.875rem, 1.5vw + 0.5rem, 1.25rem);
+  font-size: clamp(0.875rem, 1.5vw + 0.5rem, 3.5rem);
   line-height: 1.6;
   max-width: 65ch;
   font-weight: 600;
@@ -388,7 +455,7 @@ section {
       rgba(0, 0, 0, 1) 44%,
       rgba(255, 3, 3, 0.64) 100%
     ),
-    url("./imgs/services.jpg");
+    url("./imgs/services.webp");
   background-blend-mode: soft-light;
 }
 /* 🔼🔼🔼🔼🔼🔼🔼🔼🔼 */
@@ -406,7 +473,6 @@ section {
 }
 .section-carousel {
   margin: 0 auto;
-  /* border: 2px solid red; */
   width: 100vw;
   max-width: 1300px;
   padding-block: 2rem;
@@ -417,6 +483,13 @@ section {
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
+.swiper {
+  visibility: hidden;
+}
+.swiper.swiper-initialized {
+  visibility: visible;
+}
+
 .swiper-button-next::after,
 .swiper-button-prev::after {
   display: flex;
@@ -493,30 +566,52 @@ h2 {
 }
 
 .card-text {
-  /* font-size: clamp(0.7rem, 1.1vw, 0.9rem); */
-  font-size: clamp(0.75rem, 1vw + 0.3rem, 1rem);
+  /* a touch larger base; keeps 3 lines easier */
+  font-size: clamp(0.9rem, 0.35vw + 0.75rem, 1.05rem);
+  line-height: 1.35;
+  letter-spacing: clamp(0px, 0.03vw, 0.35px);
 
-  line-height: 1.3;
-  letter-spacing: 0.7px;
   text-transform: uppercase;
-  width: 70%;
-  margin-top: auto; /* 👈 pushes text to bottom if needed */
-  margin-bottom: auto; /* 👈 centers vertically if there’s extra space */
-  word-break: keep-all;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+
+  margin-top: auto;
+  margin-bottom: auto;
+
+  /* ✅ target a readable measure; only cap at 90% */
+  inline-size: clamp(30ch, 24ch + 6vw, 40ch);
+  max-inline-size: 90%;
+
+  /* balancing can sometimes create an extra wrap; keep normal */
+  text-wrap: normal;
+  word-break: normal;
 }
 
-@media (min-width: 600px) and (max-width: 800px) {
-  .card-text {
-    font-size: 0.75rem;
-    width: 77%;
+/* mid tablets */
+@media (min-width: 768px) and (max-width: 980px) {
+  .card-text:not(.card-text--long) {
+    inline-size: clamp(32ch, 26ch + 2vw, 36ch);
+  }
+}
+
+/* big screens */
+@media (min-width: 1200px) {
+  .card-text:not(.card-text--long) {
+    inline-size: clamp(34ch, 28ch + 3vw, 42ch);
   }
 }
 
 /* 🔽🔽🔽 CONTACT 🔽🔽🔽 */
+
+#section4.parallax .bg-image {
+  top: -15%;
+  /* height: 130%;  */
+  height: 150%;
+  will-change: transform;
+}
+
 .contact-bg {
   background-image: linear-gradient(
     149deg,
@@ -545,8 +640,108 @@ h2 {
 }
 
 .contact-section {
-  /* remove side padding that was shifting edges */
-  padding: 2rem 0; /* keep only vertical padding */
+  /* was: padding: calc(var(--marquee-height) + 1rem) 0 2rem; */
+  padding: calc(var(--marquee-height) + 40px + 1rem) 0 2rem;
+  position: relative;
+}
+
+/* Covers the first 40px of #section4 so the thin line is never visible */
+.contact-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 40px; /* same offset as your marquee */
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 4; /* below marquee (z:5), above bg (z:0/1) */
+  pointer-events: none;
+}
+
+/* Marquee */
+.marquee {
+  position: absolute;
+  top: 40px; /* your new position */
+  left: 0;
+  right: 0;
+  height: var(--marquee-height);
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.marquee,
+.info-container,
+.map-container {
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
+/* edge fades (optional) */
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10%;
+  pointer-events: none;
+  z-index: 1;
+}
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.65), transparent);
+}
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.65), transparent);
+}
+
+/* the moving belt */
+.marquee__track {
+  display: inline-flex;
+  gap: var(--marquee-gap); /* 👈 uses its own spacing now */
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee var(--marquee-speed) linear infinite;
+  position: relative;
+  z-index: 2;
+}
+
+/* the repeated message */
+.marquee__text {
+  font-size: clamp(1rem, 1.2vw + 0.3rem, 1.25rem);
+  line-height: 1;
+  color: red;
+  text-transform: none;
+  margin: 0; /* spacing comes from gap */
+}
+
+/* desktop-only pause on hover */
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+/* perfect loop: we scroll exactly half the belt (Set 1 width),
+   Set 2 takes over with no blank space */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+  }
 }
 
 /* Info row */
@@ -563,6 +758,7 @@ h2 {
   /* margin: 0 50px; */
   margin: 0 5%;
   text-align: left;
+  z-index: 2;
 }
 
 .info-container .info-box:last-child {
@@ -593,6 +789,30 @@ h2 {
   text-decoration: none;
 }
 
+/* Utility class */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Keep your design unchanged (optional) */
+.tel-link,
+.mail-link {
+  color: inherit;
+  text-decoration: none;
+}
+.tel-link:hover,
+.mail-link:hover {
+  text-decoration: underline; /* or keep none */
+}
+
 /* Map uses the same container edges */
 .map-container {
   width: 100%;
@@ -611,7 +831,7 @@ h2 {
   border-radius: 8px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 660px) {
   .info-container {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -672,7 +892,7 @@ h2 {
 }
 
 .partners-title {
-  color: white;
+  color: rgb(255, 0, 0);
   font-size: clamp(1.5rem, 2vw + 0.5rem, 2.4rem);
   font-family: "Orbitron", sans-serif;
   margin-bottom: 2rem;
@@ -719,6 +939,38 @@ h2 {
   }
 }
 /* 🔼🔼🔼🔼🔼🔼🔼🔼🔼 */
+
+/* ===== GLOBAL FOOTER ===== */
+.site-footer {
+  background: none; /* transparent so section 4 gradient shows through */
+  margin-top: -5rem; /* pulls the footer up over section 4 */
+  position: relative; /* keeps it in normal stacking context */
+}
+
+/* the inner bar — keep your same look */
+.rightsReserved {
+  max-width: var(--contact-max);
+  margin: 0 auto 1rem;
+  text-align: center;
+  color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+.rightsReserved .name {
+  font-weight: bold;
+}
+
+/* Optional: fine-tune overlap on small screens */
+@media (max-width: 640px) {
+  .contact-section {
+    padding-bottom: 4.5rem;
+  }
+  .site-footer {
+    margin-top: -6rem;
+  }
+}
 
 /* ARROW */
 .scroll-arrow {
