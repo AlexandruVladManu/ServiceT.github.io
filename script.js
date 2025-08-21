@@ -168,29 +168,63 @@
 })();
 
 /* -------------------------------------------------------
- * iOS in-app browser fix for tel:/mailto:
+ * iOS robust handler for tel:/mailto: (with iframe fallback)
  * -----------------------------------------------------*/
 (function () {
   const isIOS =
     /iP(hone|od|ad)/i.test(navigator.platform) ||
     (/Mac/i.test(navigator.platform) && "ontouchend" in document);
-  const isInApp = /(FBAN|FBAV|Instagram|Line|WeChat|Twitter)/i.test(
-    navigator.userAgent
-  );
 
-  if (!(isIOS && isInApp)) return;
+  if (!isIOS) return;
 
-  const forceNativeOpen = (e) => {
+  function openNative(href) {
+    // 1) Try normal top-level navigation (works in Safari & many webviews)
+    try {
+      window.location.href = href;
+    } catch (e) {
+      // ignore and fall back
+    }
+
+    // 2) Fallback for stubborn in-app browsers: hidden iframe
+    // If step 1 worked, we’ll navigate away and this won't run anyway.
+    setTimeout(() => {
+      try {
+        const ifr = document.createElement("iframe");
+        ifr.style.display = "none";
+        ifr.setAttribute("aria-hidden", "true");
+        ifr.src = href;
+        document.body.appendChild(ifr);
+        // cleanup after a moment
+        setTimeout(() => {
+          try {
+            document.body.removeChild(ifr);
+          } catch {}
+        }, 1500);
+      } catch {}
+    }, 250);
+  }
+
+  function onTap(e) {
     const a = e.currentTarget;
     const href = a.getAttribute("href") || "";
     if (!/^tel:|^mailto:/i.test(href)) return;
+
+    // Prevent the webview from doing a "page navigation" (which shows the error)
     e.preventDefault();
-    window.location.href = href;
-  };
+    e.stopPropagation();
+    openNative(href);
+  }
 
   document
     .querySelectorAll('a[href^="tel:"], a[href^="mailto:"]')
     .forEach((a) => {
-      a.addEventListener("click", forceNativeOpen, { passive: false });
+      // Ensure nothing else hijacks the click
+      a.addEventListener("click", onTap, { passive: false, capture: true });
+      // Also cover key/enter activation just in case
+      a.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter" || ev.key === " ") {
+          onTap(ev);
+        }
+      });
     });
 })();
