@@ -166,3 +166,31 @@
     initSwiper();
   });
 })();
+
+/* -------------------------------------------------------
+ * iOS in-app browser fix for tel:/mailto:
+ * -----------------------------------------------------*/
+(function () {
+  const isIOS =
+    /iP(hone|od|ad)/i.test(navigator.platform) ||
+    (/Mac/i.test(navigator.platform) && "ontouchend" in document);
+  const isInApp = /(FBAN|FBAV|Instagram|Line|WeChat|Twitter)/i.test(
+    navigator.userAgent
+  );
+
+  if (!(isIOS && isInApp)) return;
+
+  const forceNativeOpen = (e) => {
+    const a = e.currentTarget;
+    const href = a.getAttribute("href") || "";
+    if (!/^tel:|^mailto:/i.test(href)) return;
+    e.preventDefault();
+    window.location.href = href;
+  };
+
+  document
+    .querySelectorAll('a[href^="tel:"], a[href^="mailto:"]')
+    .forEach((a) => {
+      a.addEventListener("click", forceNativeOpen, { passive: false });
+    });
+})();
